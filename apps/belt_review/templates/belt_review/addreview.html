@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Book and Review area</title>
+  </head>
+  <body>
+    <h4><a href="/logout">logout</a></h4>
+    <h4><a href = "/books">Home</a></h4>
+    <div class="reviews_box">
+      book title: {{books.book}}<br>
+      author: {{books.author.author}}<br>
+      {% for review in reviews %}
+    <a href="/profile/{{review.user.id}}">{{review.user.alias}} </a>  {{review.review}}
+      rating: {{review.rating}}<br>
+      {% endfor %}
+      delete loggers review<br>
+    </div>
+    <div class="addr_box">
+      <form action='/user_review/{{books.id}}' method="post">
+        {% csrf_token %}
+        <textarea name="review" rows="8" cols="40"></textarea>
+        rating: <select name="rating">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        <input type="submit" value="Submit Review">
+      </form>
+    </div>
+  </body>
+</html>

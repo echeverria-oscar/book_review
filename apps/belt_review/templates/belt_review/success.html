@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Success page</title>
+  </head>
+  <body>
+    <h2>Welcome, {{user.alias}}! </h2>
+
+    <div class="user_actions">
+      <h3><a href="/logout">click here to logout</a></h3>
+      <h3><a href="/addbook">Add Book and Reviews</a></h3>
+
+    </div>
+    <div class="reviews">
+      {% for review in reviews %}
+        <a href="/bookreview/{{review.book.id}}">{{review.book.book}}</a>
+      {% endfor %}
+    </div>
+    {% for review in reviews %}
+      <h2><a href='/bookreview/{{review.book.id}}'>{{review.book.book}} </a></h2><br>
+      <p>{{review.rating}}</p><br>
+      <p><a href= "/profile/{{review.user.id}}">{{review.user.name}}</a>-{{review.review}}</p><br>
+      <p>{{review.created_at}}</p>
+
+
+  <div class="reviewed_box">
+      <h4>Posted Reviews on the following books:</h4>
+      <a href='/bookreview/{{review.book.id}}'>{{review.book.book}} </a>
+    {% endfor %}
+
+
+
+  </body>
+</html>
